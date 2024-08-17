@@ -1,0 +1,4 @@
+name: PaperDamagePlugin
+version: 1.0
+main: paper.damage.plugin.PaperDamagePlugin
+api-version: 1.21.1

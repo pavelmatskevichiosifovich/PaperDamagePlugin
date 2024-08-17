@@ -1,0 +1,35 @@
+plugins {
+    id 'java'
+}
+
+group = 'paper.damage.plugin'
+version = '1.0'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(22)
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven { url 'https://repo.papermc.io/repository/maven-public/' }
+}
+
+dependencies {
+    compileOnly 'io.papermc.paper:paper-api:1.21.1-R0.1-SNAPSHOT'
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+    options.compilerArgs += ['--release', '22', '-Xlint:deprecation']
+}
+
+tasks.jar {
+    archiveBaseName.set('PaperDamagePlugin')
+    archiveVersion.set(version)
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    from(sourceSets.main.resources) {
+        include 'paper-plugin.yml'
+    }
+}
